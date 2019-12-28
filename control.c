@@ -1,7 +1,6 @@
 #include "control.h"
 
-int control(char ** commands){ //string array of commands
-  char * option = commands[1];
+int control(char * option){ //string array of commands
   if (!strcmp(option, "-c")) create();
   else if (!strcmp(option, "-v")) view();
   else if (!strcmp(option, "-r")) remove();
@@ -27,6 +26,8 @@ int create(){
 }
 
 int remove(char *filename){
+  int semd;
+  int shmd;
   shctl(shmd, IPC_RMID, 0);
   printf("shared memory removed\n");
   remove(filename);
@@ -36,7 +37,12 @@ int remove(char *filename){
 }
 
 int view(char *filename){
-
+  fopen(filename, "r");
+  while(filename){
+    char * temp;
+    fgets(temp, )
+  }
+  fclose(filename);
 }
 
 char ** parse_args(char *line, char * sep){
@@ -58,3 +64,14 @@ char ** parse_args(char *line, char * sep){
   }
   return ans;
 }
+
+int main() {
+    int shmd;
+    char * data;
+    char input[3];
+    shmd = shmget(KEY, SEG_SIZE, IPC_CREAT | 0644);
+    data = shmat(shmd, 0, 0);
+    fgets(input, 3, stdin);
+    control(input);
+    return 0;
+  }

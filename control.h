@@ -14,7 +14,7 @@ union semun {
   struct seminfo  *__buf;  /* Buffer for IPC_INFO
                               (Linux-specific) */
 };
-int control(char * line);
+int control(char * option);
 int create();
 int remove(char *filename);
 int view(char *filename);
