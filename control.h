@@ -3,6 +3,7 @@
 #include <string.h>
 #include <sys/ipc.h>
 #include <sys/sem.h>
+#include <sys/shm.h>
 #include <sys/types.h>
 #include <errno.h>
 
@@ -16,6 +17,6 @@ union semun {
 };
 int control(char * option);
 int create();
-int remove();
+int removes();
 int view();
 char ** parse_args(char *line, char * sep);

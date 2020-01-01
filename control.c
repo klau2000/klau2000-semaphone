@@ -1,12 +1,12 @@
 #include "control.h"
 
 FILE *f;
-char filename[] = "file.txt";
+char *filename = "file.txt";
 
 int control(char * option){ //command string
   if (!strcmp(option, "-c")) create();
   else if (!strcmp(option, "-v")) view();
-  else if (!strcmp(option, "-r")) remove();
+  else if (!strcmp(option, "-r")) removes();
 }
 
 int create(){
@@ -38,7 +38,7 @@ int create(){
   printf("file created\n");
 }
 
-int remove(){
+int removes(){
   int semd;
   int shmd;
   shctl(shmd, IPC_RMID, 0);
@@ -56,7 +56,7 @@ int view(){
     char * temp;
     fgets(temp, sizeof temp, f);
   }
-  f = fclose(filename);
+  fclose(filename);
 }
 
 char ** parse_args(char *line, char * sep){
