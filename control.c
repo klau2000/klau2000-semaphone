@@ -52,7 +52,7 @@ int removes(){
 int view(){
   printf("The story so far: \n");
   f = fopen(filename, "r");
-  while(filename){
+  while(f){
     char * temp;
     fgets(temp, sizeof temp, f);
   }
