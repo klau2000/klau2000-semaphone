@@ -41,6 +41,8 @@ int create(){
 int removes(){
   int semd;
   int shmd;
+  semd = semget(KEY, 1, 0);
+  shmd = shmget(KEY, 1, 0);
   shmctl(shmd, IPC_RMID, 0);
   printf("shared memory removed\n");
   remove(filename);
@@ -52,9 +54,9 @@ int removes(){
 int view(){
   printf("The story so far: \n");
   f = fopen(filename, "r");
-  while(f){
-    char * temp;
-    fgets(temp, sizeof temp, f);
+  char line[1024];
+  while(fgets(line, sizeof line, f)){
+    printf("%s", line);
   }
   fclose(f);
 }
