@@ -56,7 +56,7 @@ int view(){
     char * temp;
     fgets(temp, sizeof temp, f);
   }
-  fclose(filename);
+  fclose(f);
 }
 
 char ** parse_args(char *line, char * sep){
