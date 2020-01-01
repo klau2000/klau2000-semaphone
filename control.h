@@ -8,6 +8,8 @@
 #include <errno.h>
 
 #define KEY 24602
+#define SEG_SIZE 200
+
 union semun {
   int val;    /* Value for SETVAL */
   struct semid_ds *buf;    /* Buffer for IPC_STAT, IPC_SET */
