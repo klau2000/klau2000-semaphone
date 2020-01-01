@@ -80,8 +80,9 @@ char ** parse_args(char *line, char * sep){
 }
 
 int main(int argc, char *argv[]) {
-    char input[1024];
+    char input[3];
     fgets(input, sizeof input, stdin);
+    printf("Option chosen: %s\n", input);
     control(input);
     return 0;
   }
