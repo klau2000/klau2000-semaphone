@@ -1,8 +1,5 @@
 #include "control.h"
 
-FILE *f;
-char *filename = "file.txt";
-
 int control(char * option){ //command string
   if (!strcmp(option, "-c")) create();
   else if (!strcmp(option, "-v")) view();
@@ -43,12 +40,23 @@ int removes(){
   int shmd;
   semd = semget(KEY, 1, 0);
   shmd = shmget(KEY, 1, 0);
+
+  printf("trying to get in\n");
+  struct sembuf sb;
+  sb.sem_num = 0;
+  sb.sem_op = -1;
+  semop(semd, &sb, 1);
+  //code to view, then remove
+  view();
   shmctl(shmd, IPC_RMID, 0);
   printf("shared memory removed\n");
   remove(filename);
   printf("file removed\n");
   semctl(semd, IPC_RMID, 0);
   printf("semaphore removed\n");
+
+  sb.sem_op = 1;
+  semop(semd, &sb, 1);
 }
 
 int view(){

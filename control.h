@@ -9,6 +9,8 @@
 
 #define KEY 24602
 #define SEG_SIZE 200
+FILE *f;
+char *filename = "file.txt";
 
 union semun {
   int val;    /* Value for SETVAL */

@@ -1,17 +1,11 @@
 #include "control.h"
 
 int main() {
-  char ** commands = parse_args(line, " ");
-
-
-
-  printf("Would you like to remove the semaphore?(y/n) ");
-
-  fgets(input, 3, stdin);
-
-
-
-
-  return 0;
-
+  struct sembuf sb;
+  sb.sem_num = 0;
+  sb.sem_op = -1;
+  semop(sem, &sb, 1);
+  <more code>
+  sb.sem_op = 1;
+  semop(sem, &sb, 1);
 }
