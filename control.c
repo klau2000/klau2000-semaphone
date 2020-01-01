@@ -41,7 +41,7 @@ int create(){
 int removes(){
   int semd;
   int shmd;
-  shctl(shmd, IPC_RMID, 0);
+  shmctl(shmd, IPC_RMID, 0);
   printf("shared memory removed\n");
   remove(filename);
   printf("file removed\n");
