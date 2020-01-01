@@ -16,6 +16,6 @@ union semun {
 };
 int control(char * option);
 int create();
-int remove(char *filename);
-int view(char *filename);
+int remove();
+int view();
 char ** parse_args(char *line, char * sep);

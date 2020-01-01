@@ -1,12 +1,16 @@
 #include "control.h"
 
-int control(char * option){ //string array of commands
+FILE *f;
+char filename[] = "file.txt";
+
+int control(char * option){ //command string
   if (!strcmp(option, "-c")) create();
   else if (!strcmp(option, "-v")) view();
   else if (!strcmp(option, "-r")) remove();
 }
 
 int create(){
+  //semaphore creation
   int semd;
   int v, r;
   char input[3];
@@ -23,9 +27,18 @@ int create(){
     r = semctl(semd, 0, SETVAL, us);
     printf("semaphore created\n");
   }
+  //shared memory creation
+  int shmd;
+  char * data;
+  shmd = shmget(KEY, SEG_SIZE, IPC_CREAT | 0644);
+  data = shmat(shmd, 0, 0);
+  printf("shared memory created\n");
+  //file creation
+  f = fopen(filename, "w");
+  printf("file created\n");
 }
 
-int remove(char *filename){
+int remove(){
   int semd;
   int shmd;
   shctl(shmd, IPC_RMID, 0);
@@ -36,13 +49,14 @@ int remove(char *filename){
   printf("semaphore removed\n");
 }
 
-int view(char *filename){
-  fopen(filename, "r");
+int view(){
+  printf("The story so far: \n");
+  f = fopen(filename, "r");
   while(filename){
     char * temp;
-    fgets(temp, )
+    fgets(temp, sizeof temp, f);
   }
-  fclose(filename);
+  f = fclose(filename);
 }
 
 char ** parse_args(char *line, char * sep){
@@ -65,13 +79,9 @@ char ** parse_args(char *line, char * sep){
   return ans;
 }
 
-int main() {
-    int shmd;
-    char * data;
-    char input[3];
-    shmd = shmget(KEY, SEG_SIZE, IPC_CREAT | 0644);
-    data = shmat(shmd, 0, 0);
-    fgets(input, 3, stdin);
+int main(int argc, char *argv[]) {
+    char input[1024];
+    fgets(input, sizeof input, stdin);
     control(input);
     return 0;
   }
