@@ -91,7 +91,7 @@ char ** parse_args(char *line, char * sep){
 
 int main(int argc, char *argv[]) {
     char* input = argv[1];
-    printf("Option chosen: %s\n", input);
+    //printf("Option chosen: %s\n", input);
     control(input);
     return 0;
   }
