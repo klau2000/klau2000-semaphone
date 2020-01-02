@@ -64,7 +64,7 @@ int view(){
   f = fopen(filename, "r");
   char line[SEG_SIZE];
   while(fgets(line, SEG_SIZE, f)){
-    *strchr(line, '\n') = 0
+    *strchr(line, '\n') = 0;
     printf("%s\n", line);
   }
   fclose(f);
