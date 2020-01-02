@@ -63,7 +63,7 @@ int view(){
   printf("The story so far: \n");
   f = fopen(filename, "r");
   char line[SEG_SIZE];
-  while(fgets(line, sizeof line, f)){
+  while(fgets(line, SEG_SIZE, f)){
     printf("%s", line);
   }
   fclose(f);
