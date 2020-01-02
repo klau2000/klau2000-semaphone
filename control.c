@@ -62,7 +62,7 @@ int removes(){
 int view(){
   printf("The story so far: \n");
   f = fopen(filename, "r");
-  char line[1024];
+  char line[SEG_SIZE];
   while(fgets(line, sizeof line, f)){
     printf("%s", line);
   }
