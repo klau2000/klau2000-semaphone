@@ -11,7 +11,6 @@ int main() {
   sb.sem_num = 0;
   sb.sem_op = -1;
   semop(semd, &sb, 1);
-
   //getting the last addition
   char * mem;
   mem = shmat(shmd, 0, 0);
@@ -24,7 +23,7 @@ int main() {
   strcpy(input, mem);
   int fd;
   fd = open(filename, O_WRONLY | O_APPEND);
-  write(fd, input, sizeof input);
+  write(fd, input, strlen(input));
   write(fd, "\n", 1);
   close(fd);
   //end of waiting
