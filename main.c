@@ -22,7 +22,8 @@ int main() {
   fgets(mem, SEG_SIZE, stdin);
   *strchr(mem, '\n') = 0;
   strcpy(input, mem);
-  f = open(filename, O_WRONLY | O_APPEND);
+  int fd;
+  fd = open(filename, O_WRONLY | O_APPEND);
   write(f, input, sizeof input);
   write(f, "\n", 1);
   fclose(f);
