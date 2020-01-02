@@ -25,7 +25,7 @@ int main() {
   int fd;
   fd = open(filename, O_WRONLY | O_APPEND);
   write(fd, input, sizeof input);
-  write(fd, "\n", 1);
+  write(fd, "\n", 2);
   close(fd);
   //end of waiting
   sb.sem_op = 1;
