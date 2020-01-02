@@ -10,7 +10,7 @@ int main() {
   struct sembuf sb;
   sb.sem_num = 0;
   sb.sem_op = -1;
-  semop(sem, &sb, 1);
+  semop(semd, &sb, 1);
 
   //getting the last addition
   char * mem;
@@ -28,6 +28,6 @@ int main() {
   fclose(f);
   //end of waiting
   sb.sem_op = 1;
-  semop(sem, &sb, 1);
+  semop(semd, &sb, 1);
   shmdt(mem);
 }

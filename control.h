@@ -5,6 +5,9 @@
 #include <sys/sem.h>
 #include <sys/shm.h>
 #include <sys/types.h>
+#include <fcntl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 #include <errno.h>
 
 #define KEY 24602
