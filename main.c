@@ -24,8 +24,9 @@ int main() {
   strcpy(input, mem);
   int fd;
   fd = open(filename, O_WRONLY | O_APPEND);
-  write(fd, input, SEG_SIZE);
+  write(fd, input, sizeof input);
   write(fd, "\n", 1);
+  close(fd);
   //end of waiting
   sb.sem_op = 1;
   semop(semd, &sb, 1);
